@@ -59,5 +59,13 @@
   const params = new URLSearchParams(window.location.search);
   // Mitigasi XSS dengan textContent
   document.getElementById("output").textContent = params.get("name") || "pengunjung";
-</script>
-```
+  </script>
+  ```
+  
+- Tambahkan DOMPurify
+  Jika ingin membolehkan beberapa HTML tapi tetap aman, maka tambahkan library DOMPurify
+  Tambahkan CDN DOMPurify ke HTML:
+  ```
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.3/dist/purify.min.js"></script>
+  ```
+  
