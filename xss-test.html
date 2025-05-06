@@ -1,0 +1,28 @@
+<!-- xss-test.html -->
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reflected XSS Demo</title>
+  </head>
+  <body>
+    <form action="" method="GET">
+      <input type="text" name="name" />
+      <button type="submit">Kirim</button>
+    </form>
+    <p>Halo, <span id="output"></span></p>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      // Baris ini rawan XSS
+      document.getElementById("output").innerHTML =
+        params.get("name") || "pengunjung";
+    </script>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const clean = DOMPurify.sanitize(params.get("name"));
+      document.getElementById("output").innerHTML = clean || "pengunjung";
+    </script>
+  </body>
+</html>
