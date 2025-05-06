@@ -68,4 +68,12 @@
   ```
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.3/dist/purify.min.js"></script>
   ```
-  
+  Lalu ubah code sebelumnya menjadi:
+  ```
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const clean = DOMPurify.sanitize(params.get("name"));
+  document.getElementById("output").innerHTML = clean || "pengunjung";
+  </script>
+
+  ```  
